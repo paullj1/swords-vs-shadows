@@ -1,0 +1,521 @@
+/******Import Font Faces****/
+
+@font-face {  
+  font-family: fCollapsing;  
+  src: url( ../font/Faith_Collapsing.eot ); /* IE */  
+  src: local(" Faith Collapsing "), url( ../font/faithcollapsing.ttf ) format("truetype"); /* non-IE */  
+}
+
+/*******Page Setup*******/
+
+body
+{
+	background: #555 url(../images/stone.jpg);
+}
+
+#onlyIE
+{
+	display: none;
+}
+
+#audio_files
+{
+	display: none;
+}
+
+#game
+{
+	position: relative;	
+	margin: 0 auto;
+	width: 640px;
+	cursor: url(../images/hand2.cur), default;
+}
+
+#game a
+{
+	cursor: url(../images/hand2.cur), default;
+}
+
+#game input
+{
+	cursor: url(../images/hand2.cur), default;
+}
+
+ul
+{
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+img
+{
+	border: 0px;
+}
+
+#copy
+{
+	float: right;
+	font-family: helvetica, sans-serif;
+	font-size: 9px;
+}
+
+#copy p
+{
+	margin: 0;
+}
+
+/*******Test Styles********/
+#test_buttons
+{
+	background: #990;
+	clear: right;
+} 
+
+/*******Gameplay Window*******/
+
+#mainWindow
+{
+}
+
+/*******Menu Interface*******/
+
+.menu
+{
+	position: absolute;
+	color: #fff;
+	font-family: georgia, serif;
+	overflow: hidden;
+}
+
+.menu a
+{
+	text-decoration: none;
+	font-family: georgia, serif;
+	font-size: 24px;
+	color: #fff;
+}
+
+.full
+{
+	border: 1px solid #000;
+	z-index: 1;	
+	background: #333 url(../images/menu_bg.jpg);
+	top: 0px;
+	left: 0px;
+	width: 640px;
+	height: 480px;
+	display: none;
+}
+
+.full p
+{
+	padding: 15px;
+	position: absolute;
+	bottom: 0px;
+}
+
+.full a:hover
+{
+	text-shadow: 0 0 0.6em #660, 0 0 0.6em #660, 0 0 0.6em #660, 0 0 0.6em #660;
+}
+
+	/*******Pregame Menus*******/
+
+	#start
+	{
+		z-index: 4;
+		background: url(../images/title.png);
+		display: block;
+	}
+	
+	#start h1
+	{
+		display: none;
+	}
+	
+	#start #home_menu
+	{
+		position: relative;
+		width: 300px;
+		text-align: center;
+		top: 250px;
+		left: 170px;
+	}
+	
+	#start #home_menu li
+	{
+		margin: 15px 0;
+	}
+	
+	#home_menu a
+	{
+		color: #999;
+	}
+	
+	#pause 
+	{
+		border: 3px outset #000;
+		z-index: 1;	
+		background: #333 url(../images/menu_bg.jpg);
+		bottom: 50px;
+		left: 170px;
+		display: none;
+		width: 300px;
+	}
+	
+	#pause p
+	{
+		padding: 15px;
+	}
+	
+	#pause a:hover
+	{
+		text-shadow: 0 0 0.6em #660, 0 0 0.6em #660, 0 0 0.6em #660, 0 0 0.6em #660;
+	}
+	
+	
+	#pause #pause_menu
+	{
+		position: relative;
+		width: 300px;
+		text-align: center;
+	}
+	
+	#pause #pause_menu li
+	{
+		margin: 15px 0;
+	}
+
+	#story1
+	{
+		text-align: center;
+		font-family: georgia, serif;
+		background: #000 no-repeat url("../images/lv1background.png");
+		z-index: 3;
+	}
+	
+	a.next
+	{
+		position: absolute;
+		bottom: 10px;
+		right: 20px;
+	}
+	
+	#story2
+	{
+		text-align: center;
+		font-family: georgia, serif;
+		background: #000 no-repeat url("../images/lv1background.png");
+		z-index: 2;
+	}
+	
+	#story3
+	{
+		text-align: center;
+		font-family: georgia, serif;
+		background: #000 no-repeat url("../images/lv2background.png");
+		display: none;
+	}
+	
+	#story4
+	{
+		text-align: center;
+		font-family: georgia, serif;
+		background: #000 no-repeat url("../images/lv3background.png");
+		display: none;
+	}
+	
+	#story5
+	{
+		text-align: center;
+		font-family: georgia, serif;
+		background: #000 no-repeat url("../images/lv4background.png");
+		display: none;
+	}
+	
+	#story6
+	{
+		text-align: center;
+		font-family: georgia, serif;
+		background: #000 no-repeat url("../images/lv4background.png");
+		display: none;
+	}
+	
+	#story7
+	{
+		text-align: center;
+		font-family: georgia, serif;
+		background: #000 no-repeat url("../images/lv4background.png");
+		display: none;
+	}
+	
+	#story8
+	{
+		text-align: center;
+		font-family: georgia, serif;
+		background: #000 no-repeat url("../images/lv4background.png");
+		display: none;
+	}
+	
+	/******Postgame Menus******/
+	
+	#gameover
+	{
+		text-align: center;
+		background: #000 no-repeat url("../images/lv3background.png");
+	}
+	
+	#gameover p
+	{
+	bottom: 20px;
+	}
+	
+	#score
+	{
+		position: absolute;
+		bottom: 10px;
+		left: 10px;
+		font-size: 24px;
+	}
+	
+	
+	/*******Alerts*******/
+	
+	#alerts
+	{
+		background: transparent;
+		top: 15px;
+		left: 275px;
+		height: 75px;
+		width: 325px;
+		font: 30px fCollapsing;
+		text-align: center;
+		display: none;
+	}
+	
+	/*******Audio Control*******/
+	
+	#audio_control
+	{	
+		background: transparent;
+		top: 10px;
+		right: 15px;
+		z-index: 6;
+	}
+	
+	#audio_control img
+	{
+		width: 16px;
+	}
+	
+	/*******Information (left) Panel*******/
+
+	#info
+	{
+		top:325px;
+		left: 13px;
+		width: 132px;
+		height: 110px;
+		padding: 5px;
+		text-align: center;
+		font-family: georgia, serif;
+		font-size: 10px;
+	}
+
+	#info p
+	{
+		margin: 0;
+	}
+
+	img#symbol
+	{
+		top: 0px;
+		left: 135px;
+		width: 40px;
+	}
+
+	img#health
+	{
+		height: 10px;
+		margin: 5px 0;
+	}
+
+	#info #actions
+	{
+		margin: 10px 0;
+	}
+	
+	/*******Actions Panel*******/
+	
+	#actions
+	{
+		top: 450px;
+		left: 9px;
+		width: 155px;
+		height: 22px;
+	}
+	
+	#actions img
+	{
+		position: absolute;
+		width: 26px;
+		height: 21px;
+	}
+	
+	#actions #action0 img
+	{
+		top: 0px;
+		left: 0px;
+	}
+	
+	#actions #action1 img
+	{
+		top: 0px;
+		left: 43px;
+	}
+	
+	#actions #action2 img
+	{
+		top: 0px;
+		left: 86px;
+	}
+	
+	#actions #action3 img
+	{
+		top: 0px;
+		left: 129px;
+	}
+
+	/*******Status Panel*******/
+
+	#status
+	{
+		top: 414px;
+		left: 360px;
+		width: 120px;
+		height: 66px;
+	}
+	
+	#status a#pause_button
+	{
+		position: absolute;
+		top: 3px;
+		left: 38px;
+		font-size: 12px;
+	}
+	
+	#status p#gold
+	{
+		position: absolute;
+		top: 47px;
+		left: 30px;
+		width: 85px;
+		margin: 0;
+		font-size: 14px;
+		font-family: georgia, serif;
+	}
+	
+	/*******Tools (center) Panel******/
+
+	#tools
+	{
+		top: 388px;
+		left: 188px;
+		width: 141px;
+		height: 92px;
+	}
+
+	#tools #menu
+	{
+		float: right;
+	}
+	
+	#tools img
+	{
+		position: absolute;
+		width: 38px;
+		height: 38px;
+	}
+	
+	#tools #build0 img
+	{
+		top: 0px;
+		left: 0px;
+	}
+	
+	#tools #build1 img
+	{
+		top: 0px;
+		left: 48px;
+	}
+	
+	#tools #build2 img
+	{
+		top: 0px;
+		left: 98px;
+	}
+	
+	#tools #build3 img
+	{
+		top: 49px;
+		left: 0px;
+	}
+	
+	#tools #build4 img
+	{
+		top: 49px;
+		left: 48px;
+	}
+	
+	#tools #build5 img
+	{
+		top: 49px;
+		left: 98px;
+	}
+	
+	/*******Credits Panel*******/
+	
+	#credits
+	{
+		text-align: center;
+		z-index: 5;
+		display: none;
+	}
+	
+	#credits p
+	{
+		font-size: 12px;
+		left: 40px;
+		bottom:40px;
+	}
+	
+	#title_sequence
+	{
+		position: absolute;
+		top: 60px;
+		left: 40px;
+	}
+	
+	/*******How to Play Panel*******/
+		
+	#howtoplay
+	{
+		text-align: center;
+		z-index: 5;
+		display: none;
+	}
+	
+	#howtoplay p
+	{
+		font-family: georgia, serif;
+		width: 640px;
+	}
+	
+	#howtoplay img
+	{
+	width: 500px;
+	position: absolute;
+	left: 70px;
+	top: 0px;
+	}

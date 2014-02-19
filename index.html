@@ -1,0 +1,310 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<script type="application/x-javascript" src="main.js"></script>
+<script type="application/x-javascript" src="objects.js"></script>
+<script type="application/x-javascript" src="menufunctions.js"></script>
+<script type="application/x-javascript" src="sounds.js"></script>
+<title>Swords vs Shadows</title>
+<link href="css/style.css" rel="stylesheet" />
+<link rel="shortcut icon" href="images/favicon.png" type="image/x-icon" />
+</head>
+
+<body onload="initBackground();">
+
+<!--[if lte IE 8]>
+<p>Swords vs. Shadows will not work in your browser. Please upgrade to the latest browser to play this game. We recommend <a href="http://www.google.com/chrome/">Google Chrome</a>.</p>
+<div id="onlyIE">
+<![endif]-->
+
+
+<div id="game" onclick="click1.play()">
+		
+<div id="start" class="menu full">
+<h1>Swords vs Shadows</h1> 
+<ul id="home_menu">
+<li><a href="javascript:divDisplay('start', 'none'); divDisplay('story1', 'block');">Play</a></li>
+<li><a href="javascript:divDisplay('howtoplay', 'block');">How to Play</a></li>
+<li><a href="javascript:divDisplay('credits', 'block'); muteAudio();">Credits</a></li>
+</ul>
+</div><!-- end start -->
+
+<!-- Initialize Sound and Canvas -->
+
+<div id="audio_control" class="menu">
+<a href="javascript:muteOrUnmute();"><img id="mutebutton" src="images/unmute.png"></a>
+</div> <!-- end audio_control -->
+
+<div id="audio_files">
+
+<audio id="ambient" autoplay loop controls onvolumechange="vca();">
+<source src="./sounds/MP3/ambient/heartbeat.mp3" type="audio/mpeg">
+<source src="./sounds/WAV/ambient/heartbeat.wav" type="audio/wav">
+</audio>
+
+<audio id="click1" preload>
+<source src="./sounds/MP3/click/click1.mp3" type="audio/mpeg">
+<source src="./sounds/WAV/click/click1.wav" type="audio/wav">
+</audio>
+
+<audio id="click2" preload>
+<source src="./sounds/MP3/click/click2.mp3" type="audio/mpeg">
+<source src="./sounds/WAV/click/click2.wav" type="audio/wav">
+</audio>
+
+<audio id="castle_fire" preload>
+<source src="./sounds/MP3/castle/fire.mp3" type="audio/mpeg">
+<source src="./sounds/WAV/castle/fire.wav" type="audio/wav">
+</audio>
+
+<audio id="castle_crumble" preload>
+<source src="./sounds/MP3/castle/crumble.mp3" type="audio/mpeg">
+<source src="./sounds/WAV/castle/crumble.wav" type="audio/wav">
+</audio>
+
+<audio id="castle_attack" preload>
+<source src="./sounds/MP3/castle/scramble.mp3" type="audio/mpeg">
+<source src="./sounds/WAV/castle/scramble.wav" type="audio/wav">
+</audio>
+
+<audio id="pikeman" preload>
+<source src="./sounds/MP3/pikeman/stab1.mp3" type="audio/mpeg">
+<source src="./sounds/WAV/pikeman/stab1.wav" type="audio/wav">
+</audio>
+
+<audio id="marksman" preload>
+<source src="./sounds/MP3/marksman/cbow1.mp3" type="audio/mpeg">
+<source src="./sounds/WAV/marksman/cbow1.wav" type="audio/wav">
+</audio>
+
+<audio id="crusader" preload>
+<source src="./sounds/MP3/crusader/swords.mp3" type="audio/mpeg">
+<source src="./sounds/WAV/crusader/swords.wav" type="audio/wav">
+</audio>
+
+<audio id="archer" preload>
+<source src="./sounds/MP3/archer/bow.mp3" type="audio/mpeg">
+<source src="./sounds/WAV/archer/bow.wav" type="audio/wav">
+</audio>
+
+<audio id="priest" preload>
+<source src="./sounds/MP3/click/click2.mp3" type="audio/mpeg">
+<source src="./sounds/WAV/click/click2.wav" type="audio/wav">
+</audio>
+
+<audio id="archmage" preload>
+<source src="./sounds/MP3/click/click2.mp3" type="audio/mpeg">
+<source src="./sounds/WAV/click/click2.wav" type="audio/wav">
+</audio>
+
+<audio id="dragon_breath" preload>
+<source src="./sounds/MP3/dragon/breath.mp3" type="audio/mpeg">
+<source src="./sounds/WAV/dragon/breath.wav" type="audio/wav">
+</audio>
+
+<audio id="dragon_roar" preload>
+<source src="./sounds/MP3/dragon/roar.mp3" type="audio/mpeg">
+<source src="./sounds/WAV/dragon/roar.wav" type="audio/wav">
+</audio>
+
+<audio id="ghost" preload>
+<source src="./sounds/MP3/ghost/mist.mp3" type="audio/mpeg">
+<source src="./sounds/WAV/ghost/mist.wav" type="audio/wav">
+</audio>
+
+<audio id="imp" preload>
+<source src="./sounds/MP3/imp/snarf.mp3" type="audio/mpeg">
+<source src="./sounds/WAV/imp/snarf.wav" type="audio/wav">
+</audio>
+
+<audio id="skeleton" preload>
+<source src="./sounds/MP3/skeleton/bones.mp3" type="audio/mpeg">
+<source src="./sounds/WAV/skeleton/bones.wav" type="audio/wav">
+</audio>
+
+</div><!-- end audio files -->
+
+<script>
+	var click1 = document.getElementById('click1');
+</script>
+
+<script type="application/x-javascript" src="audio.js"></script>
+
+<?php
+// Awesome Facebook Application
+// 
+// Name: Swords vs. Shadows
+// 
+
+require_once 'facebook-php-sdk/src/facebook.php';
+
+// Create our Application instance.
+$arr['appId'] = '123117094392451';
+$arr['secret'] = 'b6ba4f79da667308d51049ab9c14be9c';
+$arr['cookie'] = true;
+$facebook = new Facebook($arr);
+
+?>
+
+<canvas id="mainWindow" width="640" height="480">
+Swords vs Shadows will not work on your browser. Please use an updated browser with HTML5 support.
+</canvas>
+
+
+<div id="story1" class="menu full">
+<p>You are King Geoffrey IV. You have just conquered a surrounding kingdom and captured their castle. However,
+this castle was once home to the Dark Lord Draco. Draco has merged his forces
+with the forces of the netherworlds and he has now returned to take back his castle.</p>
+<br>
+<a class="next" href="javascript:goGame();">Play &#62;</a>
+</div><!-- end story1 -->
+
+<div id="story3" class="menu full">
+<p>The Arch Mage Orlando, the presiding military advisor, realized that this threat was far too 
+great for just one army to handle. He quickly sent word to the surrounding kingdoms that 
+reinforcements were in dire need. However, until they arrived, the castle was left to fend for itself.</p>
+<br>
+<a class="next" href="javascript:divDisplay('story3', 'none'); resumeGame();">Next Wave &#62;</a>
+</div><!-- end story3 -->
+
+<div id="story4" class="menu full">
+<p>Lord Draco made it clear of his intents. He wanted to reclaim his territory. All that would be 
+slain in the process of retaining it would be done so in the name of demolishing this realm, and 
+starting it anew with him as the omnipotent ruler. The souls of those who perished would be turned 
+into his minions, to enhance the strength of his army of Shadows.</p>
+<br>
+<a class="next" href="javascript:divDisplay('story4', 'none'); resumeGame();">Next Wave &#62;</a>
+</div><!-- end story4 -->
+
+<div id="story5" class="menu full">
+<p>The Arch Mage had decided it was best not to evacuate the castle. To save the castle and 
+eradicate Draco's minions was not so much a matter of preserving peace and harmony within the 
+kingdom, but also the greater good of humanity, in general. However, how much longer the castle
+would stand against the forces of Lord Draco was uncertain.</p>
+<br>
+<a class="next" href="javascript:divDisplay('story5', 'none'); resumeGame();">Next Wave &#62;</a>
+</div><!-- end story5 -->
+
+<div id="gameover" class="menu full">
+<p>Your castle has fallen, and the future of this world of light faces a greater struggle than 
+you were skilled enough to eradicate. While humanity's fate remains unknown, the fate of your
+castle has been decided. Or has it? ...</p>
+<ul>
+<li id="score"></li>
+<li><a class="next" href="javascript:location.reload(true);">Play Again?</a></li>
+</ul>
+</div><!-- end gameover -->
+
+<div id="pause" class="menu">
+<ul id="pause_menu">
+<li><a href="javascript:divDisplay('pause', 'none'); resumeGame();">Resume Game</a></li>
+<li><a href="javascript:location.reload(true);">Restart Game</a></li>
+<li><a href="javascript:divDisplay('howtoplay', 'block');">How to Play</a></li>
+<li><a href="javascript:divDisplay('credits', 'block'); muteAudio();">Credits</a></li>
+</ul>
+</div><!-- end start -->
+
+<div id="alerts" class="menu">
+<p></p>
+</div><!-- end alerts -->
+
+<div id="info" class="menu">
+<p id="unit_name"></p>
+<br>
+<p id="unit_description"></p>
+<p id="unit_power"></p>
+<p id="unit_range"></p>
+<p id="action_desc"></p>
+<!-- information about characters, unit health, gameplay, messages, etc -->
+</div><!-- end info -->
+
+<div id="actions" class="menu">
+<a id="action0" href="javascript:action1();" onmouseover="displayActDesc(0)" onmouseout="clearActDesc()">
+	<img id="a_img0" src="images/action.png"></a>
+<a id="action1" href="javascript:action2();" onmouseover="displayActDesc(1)" onmouseout="clearActDesc()">
+	<img id="a_img1" src="images/action.png"></a>
+<a id="action2" href="javascript:action3();" onmouseover="displayActDesc(2)" onmouseout="clearActDesc()">
+	<img id="a_img2" src="images/action.png"></a>
+<a id="action3" href="javascript:action4();" onmouseover="displayActDesc(3)" onmouseout="clearActDesc()">
+	<img id="a_img3" src="images/action.png"></a>
+</div><!-- end actions -->
+
+<div id="status" class="menu">
+<a id="pause_button" href="javascript:pause();">Pause</a>
+<!-- <img id="castle_life" src="images/bar.png"> -->
+<p id="gold"></p>
+<!-- display points, currency, castle health... -->
+</div><!-- end status -->
+
+<div id="tools" class="menu">
+<!-- access to game tools, upgrades, etc -->
+<a id="build0" href="javascript:setState(2); setType(0);" onmouseover="displayDefType(1); mouseOverDesc(1);" onmouseout="clearActDesc(); restoreDesc();">
+	<img src="images/icon/pikemanicon.png"></a>
+<a id="build1" href="javascript:setState(2); setType(1);" onmouseover="displayDefType(2); mouseOverDesc(2);" onmouseout="clearActDesc(); restoreDesc();">
+	<img src="images/icon/Marksmanicon.png"></a>
+<a id="build2" href="javascript:setState(2); setType(2);" onmouseover="displayDefType(3); mouseOverDesc(3);" onmouseout="clearActDesc(); restoreDesc();">
+	<img src="images/icon/Crusadericon.png"></a>
+<a id="build3" href="javascript:setState(2); setType(3);" onmouseover="displayDefType(4); mouseOverDesc(4);" onmouseout="clearActDesc(); restoreDesc();">
+	<img src="images/icon/archericon.png"></a>
+<a id="build4" href="javascript:setState(2); setType(4);" onmouseover="displayDefType(5); mouseOverDesc(5);" onmouseout="clearActDesc(); restoreDesc();">
+	<img src="images/icon/priesticon.png"></a>
+<a id="build5" href="javascript:buildArchMage();" onmouseover="displayDefType(6); mouseOverDesc(6);" onmouseout="clearActDesc(); restoreDesc();">
+	<img src="images/icon/Archmageicon.png"></a>
+<div id="menu">
+
+</div><!-- end tools -->
+
+</div><!-- end menu -->
+
+<div id="credits" class="menu full">
+
+<video id="title_sequence" width="560" height="316" controls>
+	<source src="./images/title_sequence.ogg" type="video/ogg">
+	<source src="./images/title_sequence.mp4" type="video/mp4">
+Your browser cannot play this video.
+</video>
+<p>Click play to view the credits.</p>
+
+<a class="next" href="javascript:divDisplay('credits', 'none'); title_sequence.pause();">(Close)</a>
+</div><!-- end credits -->
+
+<div id="howtoplay" class="menu full">
+<h2>How to Play</h2>
+<p>Defend your castle from the encroaching shadows. <br>Use your mouse or touchpad to control
+defending characters.</p>
+<img src="images/howtoplay.jpg">
+<a class="next" href="javascript:divDisplay('howtoplay', 'none');">(Close)</a>
+</div><!-- end how to play -->
+
+<script type="application/x-javascript">
+
+var c=document.getElementById("mainWindow");
+var cxt=c.getContext("2d");
+initBackground();
+
+</script>
+
+<div id="copy">
+<p>&copy; Copyright 2010 Archmage Productions & Swords vs. Shadows. All Rights Reserved. Audio from Freesound.org.</p> 
+
+<!-- <a href="https://graph.facebook.com/oauth/authorize?
+    client_id=123117094392451&
+    redirect_uri=http://www.josiahsprague.com/Game_design/index.php&
+    type=user_agent">Authorize</a> -->
+</div><!-- end copy -->
+
+<!-- <div id="test_buttons">
+<p>Test Buttons: <input type="button" value="Mute" id="mutebutton" onclick="muteOrUnmute()">
+</div>  end test_buttons -->
+
+</div><!-- end game -->
+
+<!--[if IE]>
+</div>
+<![endif]-->
+
+</body>
+</html>
